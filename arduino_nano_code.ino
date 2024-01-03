@@ -1,4 +1,7 @@
-int button[]={2,3,4,5};//can be added more as per need.
+int button[]={2,3,4,5};//can be added more as per need.//2 for enter
+                                                       //3 for mouse toggle
+                                                       //4 for s as keyboard and left click as mouse
+                                                       //5 for space as keyboard and right click as mouse
 long int instant1;
 bool signalSent[]={false,false,false};
 
