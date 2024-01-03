@@ -13,3 +13,6 @@ it includes the instruction of which key is to be pressed according to received 
 
 # joystick code
 The controller itself is not referred to as a "controller". Rather, it simulates the pressing and releasing of keyboard keys. To utilize it, initially, one must connect the controller and subsequently launch the driver program on the computer. However, if the connection between the computer and the controller experiences interruptions, such as a loose cable or accidental USB disconnection, the program terminates, necessitating reopening whenever such disruption occurs. The joystick program addresses this issue by detecting the port's connection status. When the port is connected, the driver code executes automatically. If the port is not connected, the program waits until a connection to the port is established.
+
+
+              **Make sure that both driver and joystick program is in same folder
