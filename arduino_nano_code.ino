@@ -1,4 +1,4 @@
-int button[]={2,3,4,5};//can be added more as per need.//2 for enter
+int button[]={2,3,4,5};//can be added more as per need.//2 for enter as keyboard and touchpad click as mouse
                                                        //3 for mouse toggle
                                                        //4 for s as keyboard and left click as mouse
                                                        //5 for space as keyboard and right click as mouse
