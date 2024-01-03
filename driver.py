@@ -1,13 +1,20 @@
 import serial
 import pydirectinput
-
-arduino = serial.Serial('COM4', 115200, timeout=.1) # put the name of port the arduino is connected to.
-
-pydirectinput.PAUSE = 0
-
+import time
+time.sleep(0.01)
 keysDown = {}
+pydirectinput.PAUSE=0
 
 
+
+def is_com4_connected():
+    try:
+        with serial.Serial('COM8'):
+            return True
+    except serial.SerialException:
+        return False
+	
+	
 def keyDown(key):
 	if key not in keysDown: 
 		keysDown[key] = True
@@ -53,8 +60,6 @@ def handleJoyStickAsArrowKeys(m,e,b,n,x,y):
 		elif x == 1 and y == 1 :
 			# print("New Mouse Position:", pydirectinput.position())
 			pydirectinput.moveTo(i, j)
-
-
 	elif m == 0:
 		if y == 0:
 			keyDown('down')
@@ -96,19 +101,17 @@ def handleJoyStickAsArrowKeys(m,e,b,n,x,y):
 		else: 
 			keyUp('space')
 
-		
 
+arduino=serial.Serial('COM8',115200,timeout=.1)		
+while True :
+		rawdata = arduino.readline()
+		data =str(rawdata.decode('utf-8'))
+		if data.startswith("m"):
+			e=int(data[1])
+			b=int(data[2])
+			n=int(data[3])
+			m=int(data[4])
+			x=int(data[5])
+			y=int(data[6])
+			handleJoyStickAsArrowKeys(m,e,b,n,x,y)
 
-
-while True:
-	rawdata = arduino.readline()
-	# print(rawdata)
-	data =str(rawdata.decode('utf-8'))
-	if data.startswith("m"):
-		e=int(data[1])#enter
-		b=int(data[2])#s
-		n=int(data[3])#space
-		m=int(data[4])#mouse enable
-		x=int(data[5])#joystick x val
-		y=int(data[6])#joystick y val
-		handleJoyStickAsArrowKeys(m,e,b,n,x,y)  
