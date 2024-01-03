@@ -1,19 +1,9 @@
 import serial
 import pydirectinput
 import time
-time.sleep(0.01)
+# time.sleep(0.01)
 keysDown = {}
 pydirectinput.PAUSE=0
-
-
-
-def is_com4_connected():
-    try:
-        with serial.Serial('COM8'):
-            return True
-    except serial.SerialException:
-        return False
-	
 	
 def keyDown(key):
 	if key not in keysDown: 
@@ -52,11 +42,12 @@ def handleJoyStickAsArrowKeys(m,e,b,n,x,y):
 			# print("New Mouse Position:", pydirectinput.position())	
 		if b == 1:
 			pydirectinput.leftClick()
-			pydirectinput.mouseUp()
-			
+			pydirectinput.mouseUp()	
 		if n == 1:
 			pydirectinput.rightClick()
 			pydirectinput.mouseUp()
+		if e == 1 :
+			pydirectinput.click()
 		elif x == 1 and y == 1 :
 			# print("New Mouse Position:", pydirectinput.position())
 			pydirectinput.moveTo(i, j)
