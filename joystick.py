@@ -1,23 +1,30 @@
+import serial.tools.list_ports
 import serial
 import subprocess
 val=0
 
-def is_com4_connected():
+
+def is_com_connected():
     try:
-        with serial.Serial('COM8'): #put the name of port arduino is connected to.
+        available_ports = serial.tools.list_ports.comports()
+        if len(available_ports)==0 :
+            # print("no ports detected")
+            return False
+        selected_port = available_ports[0].device
+        with serial.Serial(selected_port):
             return True
     except serial.SerialException:
         return False
 
 while True:
-    if is_com4_connected():
+    if is_com_connected():
         if val==0:
-            # print("COM8 connected! Opening Python program...")
+            # print(" connected! Opening Python program...")
             subprocess.run(['python', 'joystick.py'])
             val=1
         elif val == 1 :
             # print("connection established")
             continue
     else :
-        # print("not connected")
-        val=0 
+    #   print("not connected")
+      val=0 
