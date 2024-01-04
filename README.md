@@ -7,7 +7,7 @@
 the arduino sends the button states and joystick states through COM port at 115200 baud rate.
 
 # driver code.
-it includes the instruction of which key is to be pressed according to received data. It reads data through the COM port at 115200 baud Rate.
+It involves providing instructions on which key to press based on the received data. The data is read from the COM port at a baud rate of 115200.
 
 *Baud rate for arduino and driver should be same*
 
