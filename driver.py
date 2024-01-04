@@ -1,3 +1,4 @@
+import serial.tools.list_ports
 import serial
 import pydirectinput
 import time
@@ -92,8 +93,9 @@ def handleJoyStickAsArrowKeys(m,e,b,n,x,y):
 		else: 
 			keyUp('space')
 
-
-arduino=serial.Serial('COM8',115200,timeout=.1)		
+available_ports = serial.tools.list_ports.comports()
+selected_port = available_ports[0].device
+arduino=serial.Serial(selected_port,115200,timeout=.1)		
 while True :
 		rawdata = arduino.readline()
 		data =str(rawdata.decode('utf-8'))
