@@ -1,6 +1,6 @@
 import serial.tools.list_ports
 import serial
-import pydirectinput
+import pydirectinput #can use pyautogui
 import time
 # time.sleep(0.01)
 keysDown = {}
@@ -29,7 +29,7 @@ def handleJoyStickAsArrowKeys(m,e,b,n,x,y):
 			i=i+2
 			pydirectinput.moveTo(i,j)
 			# print("New Mouse Position:", pydirectinput.position())
-		if x ==0:
+		elif x ==0:
 			i=i-2
 			pydirectinput.moveTo(i,j)
 			# print("New Mouse Position:", pydirectinput.position())
@@ -37,7 +37,7 @@ def handleJoyStickAsArrowKeys(m,e,b,n,x,y):
 			j=j-2
 			pydirectinput.moveTo(i,j)
 			# print("New Mouse Position:", pydirectinput.position())
-		if y == 0:
+		elif y == 0:
 			j=j+2
 			pydirectinput.moveTo(i,j)
 			# print("New Mouse Position:", pydirectinput.position())	
@@ -100,11 +100,6 @@ while True :
 		rawdata = arduino.readline()
 		data =str(rawdata.decode('utf-8'))
 		if data.startswith("m"):
-			e=int(data[1])
-			b=int(data[2])
-			n=int(data[3])
-			m=int(data[4])
-			x=int(data[5])
-			y=int(data[6])
+			e,b,n,m,x,y=(int(data[i]) for i in range(6))
 			handleJoyStickAsArrowKeys(m,e,b,n,x,y)
 
