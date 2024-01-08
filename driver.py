@@ -100,6 +100,6 @@ while True :
 		rawdata = arduino.readline()
 		data =str(rawdata.decode('utf-8'))
 		if data.startswith("m"):
-			e,b,n,m,x,y=(int(data[i]) for i in range(6))
+			e,b,n,m,x,y=(int(data[i]) for i in range(1,7))
 			handleJoyStickAsArrowKeys(m,e,b,n,x,y)
 
